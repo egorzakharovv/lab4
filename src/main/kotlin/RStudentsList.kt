@@ -3,32 +3,23 @@ import data.studentList
 import react.*
 import react.dom.li
 import react.dom.ol
+import react.dom.ul
 
 interface RStudentsListProps : RProps {
     var students: Array<Student>
 }
 
-class RStudentsList : RComponent<RStudentsListProps, RState>() {
-    override fun RBuilder.render() {
-        ol {
+val RFStudentList =
+    functionalComponent<RStudentsListProps> { props ->
+        ul {
             props.students.map {
-                li {
-                    rstudent(it)
-                }
+                li { +"${it.firstname} ${it.surname}" }
             }
         }
     }
-}
 
-fun RBuilder.listOfStudents(students: Array<Student>) =
-    child(functionalComponent<RStudentsListProps> {
-        ol {
-            studentList.map {
-                li {
-                    rstudent(it)
-                }
-            }
-        }
-    }) {
+
+fun RBuilder.studentList(students: Array<Student>) =
+    child(RFStudentList) {
         attrs.students = students
     }

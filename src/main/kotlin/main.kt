@@ -8,6 +8,6 @@ fun main() {
         h1 {
             +"Students"
         }
-        listOfStudents(studentList.toTypedArray())
+        studentList(studentList.toTypedArray())
     }
 }
